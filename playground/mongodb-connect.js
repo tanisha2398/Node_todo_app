@@ -26,19 +26,19 @@ MongoClient.connect(
     //     console.log(JSON.stringify(result.ops, undefined, 2));
     //   }
     // );
-    // db.collection("Users").insertOne(
-    //   {
-    //     name: "Tanisha",
-    //     age: 21,
-    //     location: "Type-3/56-J"
-    //   },
-    //   (err, result) => {
-    //     if (err) {
-    //       return console.log("unable to add to User Collection");
-    //     }
-    //     console.log(result.ops[0]._id.getTimestamp());
-    //   }
-    // );
+    db.collection("Users").insertOne(
+      {
+        name: "Tanisha",
+        age: 21,
+        location: "Type-3/56-J"
+      },
+      (err, result) => {
+        if (err) {
+          return console.log("unable to add to User Collection");
+        }
+        console.log(result.ops[0]._id.getTimestamp());
+      }
+    );
     client.close();
   }
 );
