@@ -9,15 +9,39 @@ mongoose.connect("mongodb://localhost:27017/TodoApp", {
 
 var Todo = mongoose.model("Todo", {
   text: {
-    type: String
+    type: String,
+    required: true,
+    minlength: 1,
+    trim: true
   },
   completed: {
-    type: Boolean
+    type: Boolean,
+    default: false
   },
   completedAt: {
-    type: Number
+    type: Number,
+    default: null
   }
 });
+
+var User = mongoose.model("User", {
+  email: {
+    type: String,
+    trim: true,
+    required: true,
+    minlength: 1
+  }
+});
+var newUser = new User({});
+
+newUser.save().then(
+  doc => {
+    console.log(JSON.stringify(doc, undefined, 2));
+  },
+  e => {
+    console.log("Unable to add user");
+  }
+);
 
 // var newTodo = new Todo({
 //   text: "Cook Dinner"
@@ -32,17 +56,15 @@ var Todo = mongoose.model("Todo", {
 //   }
 // );
 
-var newTodo = new Todo({
-  text: "Feed Pet",
-  completed: true,
-  completedAt: 1234
-});
+// var newTodo = new Todo({
+//   text: "   Edit this video   "
+// });
 
-newTodo.save().then(
-  doc => {
-    console.log(JSON.stringify(doc, undefined, 2));
-  },
-  e => {
-    console.log("Unable to add new todo");
-  }
-);
+// newTodo.save().then(
+//   doc => {
+//     console.log(JSON.stringify(doc, undefined, 2));
+//   },
+//   e => {
+//     console.log("Unable to add new todo");
+//   }
+// );
