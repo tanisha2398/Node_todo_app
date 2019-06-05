@@ -7,7 +7,8 @@ mongoose
       "mongodb://localhost:27017/TodoApp",
     {
       useNewUrlParser: true,
-      useCreateIndex: true
+      useCreateIndex: true,
+      useFindAndModify: false
     }
   )
   .then(() => {
