@@ -7,16 +7,18 @@ const userTwoId = new ObjectID();
 const users = [
   {
     _id: userOneId,
-    email: "surabhi@gmail.com",
+    email: "navni@gmail.com",
     password: "userOnePass",
-    tokens: {
-      access: "auth",
-      token: jwt.sign({ _id: userOneId, access: "auth" }, "abc123").toString()
-    }
+    tokens: [
+      {
+        access: "auth",
+        token: jwt.sign({ _id: userOneId, access: "auth" }, "abc123").toString()
+      }
+    ]
   },
   {
     _id: userTwoId,
-    email: "tanya@gmail.com",
+    email: "avni@gmail.com",
     password: "userTwoPass"
   }
 ];
@@ -45,7 +47,7 @@ const populateTodos = function(done) {
 
 const populateUsers = function(done) {
   this.timeout(5000);
-  Todo.deleteMany({})
+  User.deleteMany({})
     .then(() => {
       var userOne = new User(users[0]).save();
       var userTwo = new User(users[1]).save();
